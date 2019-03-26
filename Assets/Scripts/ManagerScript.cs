@@ -10,7 +10,9 @@ public class ManagerScript : MonoBehaviour
     //[SerializeField]
     //private InputField word;
     [SerializeField]
-    private Text scrollText;
+    private Button word;
+    [SerializeField]
+    private Text WordText;
    
 
     void Start()
@@ -22,7 +24,7 @@ public class ManagerScript : MonoBehaviour
     {
         if (field.text != null )
         {
-            scrollText.text = field.text;
+            WordText.text = field.text;
          
            // Debug.Log(field.text);
         }
