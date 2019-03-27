@@ -5,55 +5,67 @@ using UnityEngine.UI;
 
 public class ManagerScript : MonoBehaviour
 {
-    [SerializeField]
-    private InputField field;
+   
     [SerializeField]
     private Button word;
-   // [SerializeField]
     private Text wordText;
     [SerializeField]
     private Transform parentWords;
-    public InputField key;
-    public InputField value;
+    [SerializeField]
+    private InputField key;
+    public InputField valueDef;
     private Dictionar myDictionary = new Dictionar();
+  
+    
     void Start()
     {
-        field = field.GetComponent<InputField>();
+        key = key.GetComponent<InputField>();
         myDictionary = new Dictionar();
+       
     }
     private void Awake()
     {
         word = word.GetComponent<Button>();
         wordText = word.GetComponentInChildren<Text>();
+        ShowWords();
+       
     }
-    public void ShowText()
+  
+    public void ShowSearchedWord()
     {
-        if (field.text != null )
+        if (key.text != null )
         {
-           // wordText.text = field.text;
-         
-           // Debug.Log(field.text);
+            Debug.Log(key.text);
+            
         }
     }
     public void SaveButton()
     {
-        Debug.Log(key.text + " -- " + value.text);
+        Debug.Log(key.text + " -- " + valueDef.text);
         myDictionary.Save();
     }
 
     public void AddWord()
     {
-        Debug.Log(key.text + " -- " + value.text);
-        myDictionary.AddElement(key.text, value.text);
-        Debug.Log(key.text + " -- " + value.text);
+        Debug.Log(key.text + " -- " + valueDef.text);
+        myDictionary.AddElement(key.text, valueDef.text);
+        Debug.Log(key.text + " -- " + valueDef.text);
     }
+    public void DeleteWord()
+    {
+        myDictionary.DeleteElement(key.text);
+
+    }
+
     public void ShowWords()
     {
-        foreach (var item in myDictionary.MyDictionary)
-        {
-           
-            Debug.Log(item);
-
-        }
+        
+            foreach (var item in myDictionary.MyDictionary)
+            {
+                wordText.text = item.Key;
+               var words = Instantiate(word, parentWords);
+            }
+        
     }
+    
 }

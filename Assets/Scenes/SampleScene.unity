@@ -719,6 +719,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 435589564}
+  - component: {fileID: 435589566}
+  - component: {fileID: 435589565}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -742,9 +744,47 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00003885184}
-  m_SizeDelta: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &435589565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435589563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
+--- !u!114 &435589566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435589563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -2095666955, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 20
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 400, y: 100}
+  m_Spacing: {x: 100, y: 5}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &463911897
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,7 +1027,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 523276197}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1745177883}
+        m_MethodName: DeleteWord
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &523276197
@@ -1514,7 +1565,7 @@ RectTransform:
   - {fileID: 1146232828}
   - {fileID: 194595898}
   m_Father: {fileID: 841909704}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1555,9 +1606,9 @@ RectTransform:
   - {fileID: 83688664}
   - {fileID: 372767097}
   - {fileID: 523276195}
+  - {fileID: 1877049924}
   - {fileID: 808665915}
   - {fileID: 1123788921}
-  - {fileID: 1877049924}
   m_Father: {fileID: 747784132}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1835,7 +1886,7 @@ RectTransform:
   - {fileID: 465149581}
   - {fileID: 1740257489}
   m_Father: {fileID: 841909704}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2445,7 +2496,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 720222837}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9967283
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3187,8 +3238,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+    m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 1745177883}
-        m_MethodName: ShowText
+        m_MethodName: ShowSearchedWord
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3196,13 +3252,8 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  m_OnValueChanged:
-    m_PersistentCalls:
-      m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
@@ -3384,11 +3435,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f645b90c6ca9ec341956ae611df95edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  field: {fileID: 1703918899}
   word: {fileID: 2761570018351406784, guid: 0aa917debdaab7b41bd418b6e7d01108, type: 3}
   parentWords: {fileID: 435589564}
   key: {fileID: 1703918899}
-  value: {fileID: 1123788922}
+  valueDef: {fileID: 1123788922}
 --- !u!1 &1783243739
 GameObject:
   m_ObjectHideFlags: 0
@@ -3500,11 +3550,11 @@ RectTransform:
   m_Children:
   - {fileID: 1176422220}
   m_Father: {fileID: 841909704}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 430, y: -243}
+  m_AnchoredPosition: {x: 430, y: -255}
   m_SizeDelta: {x: 305.6, y: 90.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1877049925

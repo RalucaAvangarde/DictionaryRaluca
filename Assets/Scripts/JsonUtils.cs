@@ -14,7 +14,7 @@ public class JsonUtils : MonoBehaviour
     {
         //jsonFilePath = Application.persistentDataPath + "/" + fileName;
         DefaultWords = new ElementsList();
-        Debug.Log(jsonFilePath);
+       // Debug.Log(jsonFilePath);
         ReadData();
     }
 
