@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class ManagerScript : MonoBehaviour
 {
-   
+
     [SerializeField]
     private Button word;
+    private Button words;
     private Text wordText;
     [SerializeField]
     private Transform parentWords;
@@ -15,28 +16,29 @@ public class ManagerScript : MonoBehaviour
     private InputField key;
     public InputField valueDef;
     private Dictionar myDictionary = new Dictionar();
-  
-    
+
+
     void Start()
     {
         key = key.GetComponent<InputField>();
         myDictionary = new Dictionar();
-       
+
     }
     private void Awake()
     {
         word = word.GetComponent<Button>();
         wordText = word.GetComponentInChildren<Text>();
         ShowWords();
-       
+
+
     }
-  
+
     public void ShowSearchedWord()
     {
-        if (key.text != null )
+        if (key.text != null)
         {
-            Debug.Log(key.text);
-            
+            //  Debug.Log(key.text);
+
         }
     }
     public void SaveButton()
@@ -49,6 +51,7 @@ public class ManagerScript : MonoBehaviour
     {
         Debug.Log(key.text + " -- " + valueDef.text);
         myDictionary.AddElement(key.text, valueDef.text);
+        ShowWords();
         Debug.Log(key.text + " -- " + valueDef.text);
     }
     public void DeleteWord()
@@ -59,13 +62,23 @@ public class ManagerScript : MonoBehaviour
 
     public void ShowWords()
     {
-        
-            foreach (var item in myDictionary.MyDictionary)
-            {
-                wordText.text = item.Key;
-               var words = Instantiate(word, parentWords);
-            }
-        
+        ClearList();
+        foreach (var item in myDictionary.MyDictionary)
+        {
+            wordText.text = item.Key;
+
+            words = Instantiate(word, parentWords);
+            
+
+        }
+
     }
-    
+    private void ClearList()
+    {
+        foreach (Transform item in parentWords)
+        {
+            Destroy(item.gameObject);
+        }
+    }
+
 }
