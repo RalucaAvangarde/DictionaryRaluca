@@ -7,8 +7,8 @@ public class ManagerScript : MonoBehaviour
 {
 
     [SerializeField]
-    private Button word;
-    private Button words;
+    private GameObject word;
+    
     private Text wordText;
     [SerializeField]
     private Transform parentWords;
@@ -26,7 +26,7 @@ public class ManagerScript : MonoBehaviour
     }
     private void Awake()
     {
-        word = word.GetComponent<Button>();
+       
         wordText = word.GetComponentInChildren<Text>();
         ShowWords();
 
@@ -52,11 +52,14 @@ public class ManagerScript : MonoBehaviour
         Debug.Log(key.text + " -- " + valueDef.text);
         myDictionary.AddElement(key.text, valueDef.text);
         ShowWords();
+        myDictionary.Save();
         Debug.Log(key.text + " -- " + valueDef.text);
     }
     public void DeleteWord()
     {
         myDictionary.DeleteElement(key.text);
+        ShowWords();
+        myDictionary.Save();
 
     }
 
@@ -67,11 +70,19 @@ public class ManagerScript : MonoBehaviour
         {
             wordText.text = item.Key;
 
-            words = Instantiate(word, parentWords);
-            
+            Instantiate(word, parentWords);
+           
+            word.GetComponent<WordElement>().name = item.Key;
+            word.GetComponent<WordElement>().description = item.Value;
+            word.GetComponent<WordElement>().manager = this;
 
         }
 
+    }
+    public void ShowDefinition(string def)
+    {
+        valueDef.text = def;
+        //Debug.Log(def);
     }
     private void ClearList()
     {

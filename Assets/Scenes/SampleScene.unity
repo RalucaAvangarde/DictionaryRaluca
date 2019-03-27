@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 435589564}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -3435,7 +3435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f645b90c6ca9ec341956ae611df95edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  word: {fileID: 2761570018351406784, guid: 0aa917debdaab7b41bd418b6e7d01108, type: 3}
+  word: {fileID: 2761570018351406814, guid: 0aa917debdaab7b41bd418b6e7d01108, type: 3}
   parentWords: {fileID: 435589564}
   key: {fileID: 1703918899}
   valueDef: {fileID: 1123788922}
