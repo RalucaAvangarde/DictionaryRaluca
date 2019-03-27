@@ -7,26 +7,53 @@ public class ManagerScript : MonoBehaviour
 {
     [SerializeField]
     private InputField field;
-    //[SerializeField]
-    //private InputField word;
     [SerializeField]
     private Button word;
+   // [SerializeField]
+    private Text wordText;
     [SerializeField]
-    private Text WordText;
-   
-
+    private Transform parentWords;
+    public InputField key;
+    public InputField value;
+    private Dictionar myDictionary = new Dictionar();
     void Start()
     {
-        field = field.GetComponent<InputField>(); 
+        field = field.GetComponent<InputField>();
+        myDictionary = new Dictionar();
     }
-
+    private void Awake()
+    {
+        word = word.GetComponent<Button>();
+        wordText = word.GetComponentInChildren<Text>();
+    }
     public void ShowText()
     {
         if (field.text != null )
         {
-            WordText.text = field.text;
+           // wordText.text = field.text;
          
            // Debug.Log(field.text);
+        }
+    }
+    public void SaveButton()
+    {
+        Debug.Log(key.text + " -- " + value.text);
+        myDictionary.Save();
+    }
+
+    public void AddWord()
+    {
+        Debug.Log(key.text + " -- " + value.text);
+        myDictionary.AddElement(key.text, value.text);
+        Debug.Log(key.text + " -- " + value.text);
+    }
+    public void ShowWords()
+    {
+        foreach (var item in myDictionary.MyDictionary)
+        {
+           
+            Debug.Log(item);
+
         }
     }
 }
