@@ -1,20 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ManagerScript : MonoBehaviour
 {
 
-    [SerializeField]
-    private GameObject word;
     
+    [SerializeField]
+    private Dropdown sortDd;
+    [SerializeField]
+    private Button word;
     private Text wordText;
     [SerializeField]
     private Transform parentWords;
     [SerializeField]
     private InputField key;
-    public InputField valueDef;
+    [SerializeField]
+    private InputField valueDef;
+    [SerializeField]
+    private InputField search;
     private Dictionar myDictionary = new Dictionar();
 
 
@@ -33,19 +39,6 @@ public class ManagerScript : MonoBehaviour
 
     }
 
-    public void ShowSearchedWord()
-    {
-        if (key.text != null)
-        {
-            //  Debug.Log(key.text);
-
-        }
-    }
-    public void SaveButton()
-    {
-        Debug.Log(key.text + " -- " + valueDef.text);
-        myDictionary.Save();
-    }
 
     public void AddWord()
     {
@@ -66,23 +59,64 @@ public class ManagerScript : MonoBehaviour
     public void ShowWords()
     {
         ClearList();
-        foreach (var item in myDictionary.MyDictionary)
+        if (sortDd.value == 0 && sortDd.gameObject.activeInHierarchy == true)
         {
-            wordText.text = item.Key;
-
-            Instantiate(word, parentWords);
-           
-            word.GetComponent<WordElement>().name = item.Key;
-            word.GetComponent<WordElement>().description = item.Value;
-            word.GetComponent<WordElement>().manager = this;
-
+            ClearList();
+            foreach (var item in myDictionary.MyDictionary.OrderBy(x => x.Key))
+            {
+                wordText.text = item.Key;
+                var words = Instantiate(word, parentWords);
+                SetListener(words, wordText.text);
+            }
         }
-
+        else if (sortDd.value == 1)
+        {
+            ClearList();
+            foreach (var item in myDictionary.MyDictionary.OrderByDescending(x => x.Key))
+            {
+                wordText.text = item.Key;
+                var words = Instantiate(word, parentWords);
+                SetListener(words, wordText.text);
+            }
+        }
+        else 
+        {
+            ClearList();
+            foreach (var item in myDictionary.MyDictionary)
+            {
+                if (item.Key.Contains(search.text))
+                {
+                    wordText.text = item.Key;
+                    var words = Instantiate(word, parentWords);
+                    SetListener(words, wordText.text);
+                    // word.GetComponent<WordElement>().nameWord = item.Key;
+                    // word.GetComponent<WordElement>().description = item.Value;
+                    // word.GetComponent<WordElement>().manager = this;
+                }
+            }
+        }
+        
     }
-    public void ShowDefinition(string def)
+    private void SetListener(Button b, string action)
     {
-        valueDef.text = def;
-        //Debug.Log(def);
+        b.onClick.AddListener(() => { DisplayDescription(action); });
+    }
+    private void DisplayDescription(string Word)
+    {
+        valueDef.text = myDictionary.MyDictionary[Word];
+    }
+    /*  public void ShowDefinition(string def)
+      {
+          valueDef.text = def;
+      }*/
+
+    public void UpdateDefinition()
+    {
+        if (valueDef.text!= null)
+        {
+           // myDictionary.UpdateElement(key.text, valueDef.text);
+            //myDictionary.Save();
+        }
     }
     private void ClearList()
     {

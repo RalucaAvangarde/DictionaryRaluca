@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class WordElement : MonoBehaviour
 {
-    public string name;
+    public string nameWord;
     public  string description;
     [HideInInspector]
     public ManagerScript manager;
 
     public void ShowDefinition()
     {
-        manager.ShowDefinition(description);
+       // manager.ShowDefinition(description);
     }
 }

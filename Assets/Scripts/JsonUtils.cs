@@ -8,13 +8,11 @@ public class JsonUtils : MonoBehaviour
     public ElementsList DefaultWords { get; set; }
     private string fileName = @"C:\Users\Intern 1\AppData\LocalLow\DefaultCompany\DictionaryProject\dictionary.json"; // 
     private string jsonFilePath;
-    //private static ElementsList dictionaryWords;
 
     void Awake()
     {
         //jsonFilePath = Application.persistentDataPath + "/" + fileName;
         DefaultWords = new ElementsList();
-       // Debug.Log(jsonFilePath);
         ReadData();
     }
 
@@ -32,16 +30,35 @@ public class JsonUtils : MonoBehaviour
 
     public ElementsList ReadData()
     {
-        if (File.Exists(fileName))
+        try
         {
-            string contents = File.ReadAllText(fileName);
-            DefaultWords = JsonUtility.FromJson<ElementsList>(contents);
+            if (File.Exists(fileName))
+            {
+                string contents = File.ReadAllText(fileName);
+                DefaultWords = JsonUtility.FromJson<ElementsList>(contents);
 
+            }
+            else
+            {
+                DefaultWords = new ElementsList();
+                DefaultWords.Words = new List<DictionaryElement>();
+                DefaultWords.Words.Add(new DictionaryElement() { Word = "table", Definition = "table definition" });
+                DefaultWords.Words.Add(new DictionaryElement() { Word = "chair", Definition = "chair definition" });
+                DefaultWords.Words.Add(new DictionaryElement() { Word = "problem", Definition = "A thing that is difficult to achieve" });
+                DefaultWords.Words.Add(new DictionaryElement() { Word = "abstract", Definition = "abstract definition" });
+                DefaultWords.Words.Add(new DictionaryElement() { Word = "book", Definition = " A literary composition" });
+                SaveData();
+            }
         }
-        else
+        catch (System.Exception)
         {
+
             DefaultWords = new ElementsList();
+            // DefaultWords.Words.Add(new DictionaryElement() { Word = "table", Definition = "table definition" });
+            // DefaultWords.Words.Add(new DictionaryElement() { Word = "chair", Definition = "chair definition" });
         }
+
+
         return DefaultWords;
     }
 }
