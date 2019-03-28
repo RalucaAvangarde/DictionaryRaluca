@@ -59,7 +59,7 @@ public class ManagerScript : MonoBehaviour
     public void ShowWords()
     {
         ClearList();
-        if (sortDd.value == 0 && sortDd.gameObject.activeInHierarchy == true)
+        if (sortDd.value == 1 )//&& sortDd.gameObject.activeInHierarchy == true)
         {
             ClearList();
             foreach (var item in myDictionary.MyDictionary.OrderBy(x => x.Key))
@@ -69,7 +69,7 @@ public class ManagerScript : MonoBehaviour
                 SetListener(words, wordText.text);
             }
         }
-        else if (sortDd.value == 1)
+        else if (sortDd.value == 2)
         {
             ClearList();
             foreach (var item in myDictionary.MyDictionary.OrderByDescending(x => x.Key))
@@ -104,6 +104,7 @@ public class ManagerScript : MonoBehaviour
     private void DisplayDescription(string Word)
     {
         valueDef.text = myDictionary.MyDictionary[Word];
+        key.text = Word;
     }
     /*  public void ShowDefinition(string def)
       {
@@ -112,10 +113,12 @@ public class ManagerScript : MonoBehaviour
 
     public void UpdateDefinition()
     {
-        if (valueDef.text!= null)
+        if (valueDef.text!= null && key.text != null)
         {
-           // myDictionary.UpdateElement(key.text, valueDef.text);
-            //myDictionary.Save();
+            myDictionary.UpdateElement(key.text, valueDef.text);
+            myDictionary.Save();
+            ShowWords();
+            Debug.Log(valueDef.text);
         }
     }
     private void ClearList()
