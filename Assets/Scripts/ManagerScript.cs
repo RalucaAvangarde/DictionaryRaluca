@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class ManagerScript : MonoBehaviour
 {
 
-    
     [SerializeField]
     private Dropdown sortDd;
     [SerializeField]
@@ -32,21 +31,29 @@ public class ManagerScript : MonoBehaviour
     }
     private void Awake()
     {
-       
         wordText = word.GetComponentInChildren<Text>();
         ShowWords();
-
 
     }
 
 
     public void AddWord()
     {
-        Debug.Log(key.text + " -- " + valueDef.text);
-        myDictionary.AddElement(key.text, valueDef.text);
-        ShowWords();
-        myDictionary.Save();
-        Debug.Log(key.text + " -- " + valueDef.text);
+        var space = "";
+
+        if (!string.IsNullOrEmpty(key.text) || !key.text.Contains(space))
+        {
+            myDictionary.AddElement(key.text, valueDef.text);
+            ShowWords();
+            myDictionary.Save();
+            Debug.Log(key.text + " -- " + valueDef.text);
+        }
+        else
+
+        {
+            Debug.Log("Insert a word");
+        }
+
     }
     public void DeleteWord()
     {
@@ -59,14 +66,17 @@ public class ManagerScript : MonoBehaviour
     public void ShowWords()
     {
         ClearList();
-        if (sortDd.value == 1 )//&& sortDd.gameObject.activeInHierarchy == true)
+        if (sortDd.value == 1)
         {
             ClearList();
             foreach (var item in myDictionary.MyDictionary.OrderBy(x => x.Key))
             {
-                wordText.text = item.Key;
-                var words = Instantiate(word, parentWords);
-                SetListener(words, wordText.text);
+                if (item.Key.Contains(search.text))
+                {
+                    wordText.text = item.Key;
+                    var words = Instantiate(word, parentWords);
+                    SetListener(words, wordText.text);
+                }
             }
         }
         else if (sortDd.value == 2)
@@ -74,12 +84,15 @@ public class ManagerScript : MonoBehaviour
             ClearList();
             foreach (var item in myDictionary.MyDictionary.OrderByDescending(x => x.Key))
             {
-                wordText.text = item.Key;
-                var words = Instantiate(word, parentWords);
-                SetListener(words, wordText.text);
+                if (item.Key.Contains(search.text))
+                {
+                    wordText.text = item.Key;
+                    var words = Instantiate(word, parentWords);
+                    SetListener(words, wordText.text);
+                }
             }
         }
-        else 
+        else
         {
             ClearList();
             foreach (var item in myDictionary.MyDictionary)
@@ -95,7 +108,7 @@ public class ManagerScript : MonoBehaviour
                 }
             }
         }
-        
+
     }
     private void SetListener(Button b, string action)
     {
@@ -113,7 +126,7 @@ public class ManagerScript : MonoBehaviour
 
     public void UpdateDefinition()
     {
-        if (valueDef.text!= null && key.text != null)
+        if (valueDef.text != null && key.text != null)
         {
             myDictionary.UpdateElement(key.text, valueDef.text);
             myDictionary.Save();

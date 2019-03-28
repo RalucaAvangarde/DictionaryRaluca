@@ -11,7 +11,6 @@ public class JsonUtils : MonoBehaviour
 
     void Awake()
     {
-        //jsonFilePath = Application.persistentDataPath + "/" + fileName;
         DefaultWords = new ElementsList();
         ReadData();
     }
@@ -20,12 +19,6 @@ public class JsonUtils : MonoBehaviour
     {
         string contents = JsonUtility.ToJson(DefaultWords, true);
         File.WriteAllText(fileName, contents);
-    }
-
-    void OnApplicationQuit()
-    {
-        //Debug.Log("Application ending after " + Time.time + " seconds");
-        //SaveData();
     }
 
     public ElementsList ReadData()
@@ -54,8 +47,6 @@ public class JsonUtils : MonoBehaviour
         {
 
             DefaultWords = new ElementsList();
-            // DefaultWords.Words.Add(new DictionaryElement() { Word = "table", Definition = "table definition" });
-            // DefaultWords.Words.Add(new DictionaryElement() { Word = "chair", Definition = "chair definition" });
         }
 
 

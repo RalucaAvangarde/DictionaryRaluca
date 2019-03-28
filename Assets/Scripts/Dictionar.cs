@@ -14,8 +14,6 @@ public class Dictionar
         MyDictionary = new Dictionary<string, string>();
 
         ToDictionary(utils.ReadData());
-        //MyDictionary.Add("someting", "fromDictionay");
-
     }
 
     public void Save()
