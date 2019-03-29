@@ -54,7 +54,7 @@ public class ManagerScript : MonoBehaviour
                 myDictionary.Save();
                 Debug.Log(key.text + " -- " + valueDef.text);
                 ClearFields();
-                consoleText.text = "";
+                consoleText.text = "Word successfully added";
 
             }
             else 
@@ -67,8 +67,8 @@ public class ManagerScript : MonoBehaviour
         }
         else
         {
-            consoleText.text = "Element exists already!";
-              Debug.Log("Element exists already!");
+            consoleText.text = "Element already exist!";
+              Debug.Log("Element  already exist!");
         }
 
 
@@ -82,7 +82,7 @@ public class ManagerScript : MonoBehaviour
             ShowWords();
             myDictionary.Save();
             ClearFields();
-            consoleText.text = "";
+            consoleText.text = "Word successfully deleted ^_^";
         }
         else
         {
@@ -99,18 +99,19 @@ public class ManagerScript : MonoBehaviour
         {
             ClearList();
             DisplayWordsFromDictionary(myDictionary.MyDictionary.OrderBy(x => x.Key).ToDictionary(element => element.Key, element => element.Value));
+            consoleText.text = "";
         }
         else if (sortDd.value == 2)
         {
             ClearList();
             DisplayWordsFromDictionary(myDictionary.MyDictionary.OrderByDescending(x => x.Key).ToDictionary(element => element.Key, element => element.Value));
-
+            consoleText.text = "";
         }
         else
         {
             ClearList();
             DisplayWordsFromDictionary(myDictionary.MyDictionary);
-
+            consoleText.text = "";
         }
 
     }
@@ -125,12 +126,14 @@ public class ManagerScript : MonoBehaviour
                 var words = Instantiate(word, parentWords);
                 SetListener(words, wordText.text);
                 ClearFields();
+                
             }
         }
     }
     private void SetListener(Button b, string action)
     {
         b.onClick.AddListener(() => { DisplayDescription(action); });
+
     }
 
     //display description for a word from dictionary
@@ -150,6 +153,7 @@ public class ManagerScript : MonoBehaviour
             ShowWords();
             Debug.Log(valueDef.text);
             ClearFields();
+            consoleText.text = "";
         }
     }
     //clear the scroll view 
