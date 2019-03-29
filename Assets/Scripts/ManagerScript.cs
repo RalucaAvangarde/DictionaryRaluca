@@ -14,6 +14,8 @@ public class ManagerScript : MonoBehaviour
     private Button word;
     private Text wordText;
     [SerializeField]
+    private Text consoleText;
+    [SerializeField]
     private Transform parentWords;
     [SerializeField]
     private InputField key;
@@ -23,12 +25,11 @@ public class ManagerScript : MonoBehaviour
     private InputField search;
     private Dictionar myDictionary = new Dictionar();
 
-
     void Start()
     {
         key = key.GetComponent<InputField>();
         myDictionary = new Dictionar();
-
+        consoleText.text = "";
     }
     private void Awake()
     {
@@ -45,6 +46,7 @@ public class ManagerScript : MonoBehaviour
         var space = "";
         if (!myDictionary.MyDictionary.Keys.Contains(key.text))
         {
+            consoleText.text = "";
             if ((!string.IsNullOrEmpty(key.text) || !key.text.Contains(space)) && (!string.IsNullOrEmpty(valueDef.text) || !valueDef.text.Contains(space)))
             {
                 myDictionary.AddElement(key.text, valueDef.text);
@@ -52,16 +54,21 @@ public class ManagerScript : MonoBehaviour
                 myDictionary.Save();
                 Debug.Log(key.text + " -- " + valueDef.text);
                 ClearFields();
-            }
-            else
+                consoleText.text = "";
 
-            {
-                Debug.Log("Insert a word");
             }
+            else 
+            {
+                consoleText.text = "Insert a word or definition!";
+                Debug.Log("Insert a word or definition!");
+                
+            }
+
         }
         else
         {
-            Debug.Log("Element exists already");
+            consoleText.text = "Element exists already!";
+              Debug.Log("Element exists already!");
         }
 
 
@@ -75,10 +82,12 @@ public class ManagerScript : MonoBehaviour
             ShowWords();
             myDictionary.Save();
             ClearFields();
+            consoleText.text = "";
         }
         else
         {
-            Debug.Log("The word doensn`t exists in dictionary");
+               consoleText.text = "The word doensn`t exists in dictionary";
+               Debug.Log("The word doensn`t exists in dictionary");
         }
 
     }
@@ -105,7 +114,7 @@ public class ManagerScript : MonoBehaviour
         }
 
     }
-    
+    // this method is called in showWords and display the words when addWord button is clicked
     private void DisplayWordsFromDictionary(Dictionary<string, string> dictionary)
     {
         foreach (var item in dictionary)
@@ -115,6 +124,7 @@ public class ManagerScript : MonoBehaviour
                 wordText.text = item.Key;
                 var words = Instantiate(word, parentWords);
                 SetListener(words, wordText.text);
+                ClearFields();
             }
         }
     }
@@ -122,13 +132,15 @@ public class ManagerScript : MonoBehaviour
     {
         b.onClick.AddListener(() => { DisplayDescription(action); });
     }
+
+    //display description for a word from dictionary
     private void DisplayDescription(string Word)
     {
         valueDef.text = myDictionary.MyDictionary[Word];
         key.text = Word;
     }
 
-
+    // this method is called when press on SaveDefinition Button, and update the word definition 
     public void UpdateDefinition()
     {
         if (valueDef.text != null && key.text != null)
@@ -140,6 +152,7 @@ public class ManagerScript : MonoBehaviour
             ClearFields();
         }
     }
+    //clear the scroll view 
     private void ClearList()
     {
         foreach (Transform item in parentWords)
@@ -147,7 +160,7 @@ public class ManagerScript : MonoBehaviour
             Destroy(item.gameObject);
         }
     }
-
+    // clear key field and valueDef field
     private void ClearFields()
     {
         key.text = "";
