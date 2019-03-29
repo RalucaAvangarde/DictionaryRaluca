@@ -13,4 +13,9 @@ public class WordElement : MonoBehaviour
     {
        // manager.ShowDefinition(description);
     }
+    // in manager
+    /*  public void ShowDefinition(string def)
+      {
+          valueDef.text = def;
+      }*/
 }

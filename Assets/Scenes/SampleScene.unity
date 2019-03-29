@@ -469,18 +469,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -634,13 +623,13 @@ RectTransform:
   - {fileID: 262910054}
   - {fileID: 1382186686}
   - {fileID: 1277076126}
-  m_Father: {fileID: 808665915}
+  m_Father: {fileID: 1146232828}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 696, y: -287}
-  m_SizeDelta: {x: 185.6, y: -35.6}
+  m_AnchoredPosition: {x: 0, y: -109}
+  m_SizeDelta: {x: -23.799988, y: -28.199997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &194595899
 MonoBehaviour:
@@ -687,7 +676,7 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: 
+    - m_Text: Unordered
       m_Image: {fileID: 0}
     - m_Text: Words A-Z
       m_Image: {fileID: 0}
@@ -1229,7 +1218,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -76, y: -284}
+  m_AnchoredPosition: {x: -102, y: -207}
   m_SizeDelta: {x: 305.6, y: 94.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &523276196
@@ -1779,43 +1768,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &808665914
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 808665915}
-  m_Layer: 5
-  m_Name: ViewWords
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &808665915
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808665914}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1146232828}
-  - {fileID: 194595898}
-  m_Father: {fileID: 841909704}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &841909703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1852,8 +1804,8 @@ RectTransform:
   - {fileID: 83688664}
   - {fileID: 372767097}
   - {fileID: 523276195}
+  - {fileID: 1146232828}
   - {fileID: 1877049924}
-  - {fileID: 808665915}
   m_Father: {fileID: 747784132}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2270,12 +2222,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1935913499}
-  m_Father: {fileID: 808665915}
-  m_RootOrder: 0
+  - {fileID: 194595898}
+  m_Father: {fileID: 841909704}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 306, y: -284.6}
+  m_AnchoredPosition: {x: 302, y: -206.15}
   m_SizeDelta: {x: 309.4, y: 92.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1146232829
@@ -3539,18 +3492,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -3865,11 +3807,11 @@ RectTransform:
   m_Children:
   - {fileID: 1176422220}
   m_Father: {fileID: 841909704}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 696, y: -141}
+  m_AnchoredPosition: {x: 699, y: -207}
   m_SizeDelta: {x: 305.6, y: 90.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1877049925

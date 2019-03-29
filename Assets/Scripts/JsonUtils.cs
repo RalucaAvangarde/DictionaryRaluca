@@ -6,7 +6,7 @@ using UnityEngine;
 public class JsonUtils : MonoBehaviour
 {
     public ElementsList DefaultWords { get; set; }
-    private string fileName = @"C:\Users\Intern 1\AppData\LocalLow\DefaultCompany\DictionaryProject\dictionary.json"; // 
+    private string fileName = "dictionary1.json"; // @"C:\Users\Intern 1\AppData\LocalLow\DefaultCompany\DictionaryProject\
     private string jsonFilePath;
 
     void Awake()

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -36,30 +37,36 @@ public class ManagerScript : MonoBehaviour
 
     }
 
-
+    // verify if inputs contains words and definition and after add the element in dictionary and save it
+    // after adding word, cleared input field
     public void AddWord()
     {
-        var space = "";
+        
+            var space = "";
 
-        if (!string.IsNullOrEmpty(key.text) || !key.text.Contains(space))
-        {
-            myDictionary.AddElement(key.text, valueDef.text);
-            ShowWords();
-            myDictionary.Save();
-            Debug.Log(key.text + " -- " + valueDef.text);
-        }
-        else
+            if ((!string.IsNullOrEmpty(key.text) || !key.text.Contains(space)) && (!string.IsNullOrEmpty(valueDef.text) || !valueDef.text.Contains(space)))
+            {
+                myDictionary.AddElement(key.text, valueDef.text);
+                ShowWords();
+                myDictionary.Save();
+                key.text = "";             
+                valueDef.text = "";
+                Debug.Log(key.text + " -- " + valueDef.text);
+            }
+            else
 
-        {
-            Debug.Log("Insert a word");
-        }
-
+            {
+                Debug.Log("Insert a word");
+            }
+        
     }
     public void DeleteWord()
     {
         myDictionary.DeleteElement(key.text);
         ShowWords();
         myDictionary.Save();
+        key.text = "";
+        valueDef.text = "";
 
     }
 
@@ -69,46 +76,34 @@ public class ManagerScript : MonoBehaviour
         if (sortDd.value == 1)
         {
             ClearList();
-            foreach (var item in myDictionary.MyDictionary.OrderBy(x => x.Key))
-            {
-                if (item.Key.Contains(search.text))
-                {
-                    wordText.text = item.Key;
-                    var words = Instantiate(word, parentWords);
-                    SetListener(words, wordText.text);
-                }
-            }
+            DisplayWordsFromDictionary(myDictionary.MyDictionary.OrderBy(x => x.Key).ToDictionary(element => element.Key, element => element.Value));
         }
         else if (sortDd.value == 2)
         {
             ClearList();
-            foreach (var item in myDictionary.MyDictionary.OrderByDescending(x => x.Key))
-            {
-                if (item.Key.Contains(search.text))
-                {
-                    wordText.text = item.Key;
-                    var words = Instantiate(word, parentWords);
-                    SetListener(words, wordText.text);
-                }
-            }
+
+            DisplayWordsFromDictionary(myDictionary.MyDictionary.OrderByDescending(x => x.Key).ToDictionary(element => element.Key, element => element.Value));
+           
         }
         else
         {
             ClearList();
-            foreach (var item in myDictionary.MyDictionary)
-            {
-                if (item.Key.Contains(search.text))
-                {
-                    wordText.text = item.Key;
-                    var words = Instantiate(word, parentWords);
-                    SetListener(words, wordText.text);
-                    // word.GetComponent<WordElement>().nameWord = item.Key;
-                    // word.GetComponent<WordElement>().description = item.Value;
-                    // word.GetComponent<WordElement>().manager = this;
-                }
-            }
+            DisplayWordsFromDictionary(myDictionary.MyDictionary);
+          
         }
 
+    }
+    private void DisplayWordsFromDictionary(Dictionary<string, string> dictionary)
+    {
+        foreach (var item in dictionary)
+        {
+            if (item.Key.ToLower().StartsWith(search.text.ToLower()))
+            {
+                wordText.text = item.Key;
+                var words = Instantiate(word, parentWords);
+                SetListener(words, wordText.text);
+            }
+        }
     }
     private void SetListener(Button b, string action)
     {
@@ -119,10 +114,7 @@ public class ManagerScript : MonoBehaviour
         valueDef.text = myDictionary.MyDictionary[Word];
         key.text = Word;
     }
-    /*  public void ShowDefinition(string def)
-      {
-          valueDef.text = def;
-      }*/
+    
 
     public void UpdateDefinition()
     {
