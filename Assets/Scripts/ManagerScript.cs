@@ -36,12 +36,13 @@ public class ManagerScript : MonoBehaviour
         ShowWords();
 
     }
-
+    // try catch - don`t allow to user to add a word if that word exists already
     // verify if inputs contains words and definition and after add the element in dictionary and save it
     // after adding word, cleared input field
     public void AddWord()
     {
-        
+        try
+        {
             var space = "";
 
             if ((!string.IsNullOrEmpty(key.text) || !key.text.Contains(space)) && (!string.IsNullOrEmpty(valueDef.text) || !valueDef.text.Contains(space)))
@@ -49,24 +50,27 @@ public class ManagerScript : MonoBehaviour
                 myDictionary.AddElement(key.text, valueDef.text);
                 ShowWords();
                 myDictionary.Save();
-                key.text = "";             
-                valueDef.text = "";
                 Debug.Log(key.text + " -- " + valueDef.text);
+                ClearFields();
             }
             else
 
             {
                 Debug.Log("Insert a word");
             }
-        
+        }
+        catch (Exception)
+        {
+            Debug.LogError("Element is already in dictionary");
+        }
+
     }
     public void DeleteWord()
     {
         myDictionary.DeleteElement(key.text);
         ShowWords();
         myDictionary.Save();
-        key.text = "";
-        valueDef.text = "";
+        ClearFields();
 
     }
 
@@ -81,15 +85,14 @@ public class ManagerScript : MonoBehaviour
         else if (sortDd.value == 2)
         {
             ClearList();
-
             DisplayWordsFromDictionary(myDictionary.MyDictionary.OrderByDescending(x => x.Key).ToDictionary(element => element.Key, element => element.Value));
-           
+
         }
         else
         {
             ClearList();
             DisplayWordsFromDictionary(myDictionary.MyDictionary);
-          
+
         }
 
     }
@@ -114,7 +117,7 @@ public class ManagerScript : MonoBehaviour
         valueDef.text = myDictionary.MyDictionary[Word];
         key.text = Word;
     }
-    
+
 
     public void UpdateDefinition()
     {
@@ -124,6 +127,7 @@ public class ManagerScript : MonoBehaviour
             myDictionary.Save();
             ShowWords();
             Debug.Log(valueDef.text);
+            ClearFields();
         }
     }
     private void ClearList()
@@ -132,6 +136,12 @@ public class ManagerScript : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
+    }
+
+    private void ClearFields()
+    {
+        key.text = "";
+        valueDef.text = "";
     }
 
 }
