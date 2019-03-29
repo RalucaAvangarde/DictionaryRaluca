@@ -37,7 +37,7 @@ public class ManagerScript : MonoBehaviour
 
     }
     // try catch - don`t allow to user to add a word if that word exists already
-    // verify if inputs contains words and definition and after add the element in dictionary and save it
+    // verify if inputs contains words and definition and after add the element in dictionary and save it, when Add button is pressed
     // after adding word, cleared input field
     public void AddWord()
     {
@@ -65,6 +65,7 @@ public class ManagerScript : MonoBehaviour
         }
 
     }
+    //delete word from dictionary when press on Delete button
     public void DeleteWord()
     {
         myDictionary.DeleteElement(key.text);
@@ -73,7 +74,7 @@ public class ManagerScript : MonoBehaviour
         ClearFields();
 
     }
-
+    // display words in specified order, A-Z, Z-A or unordered
     public void ShowWords()
     {
         ClearList();

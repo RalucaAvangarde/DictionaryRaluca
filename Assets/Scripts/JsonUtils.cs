@@ -15,12 +15,14 @@ public class JsonUtils : MonoBehaviour
         ReadData();
     }
 
+    //save read data into file
     public void SaveData()
     {
         string contents = JsonUtility.ToJson(DefaultWords, true);
         File.WriteAllText(fileName, contents);
     }
 
+  // read data from file, if file exists, else create it
     public ElementsList ReadData()
     {
         try

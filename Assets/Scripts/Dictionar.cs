@@ -23,22 +23,25 @@ public class Dictionar
         utils.SaveData();
     }
 
+    //add word and definition to dictionary
     public void AddElement(string word, string descr)
     {
         MyDictionary.Add(word, descr);
     }
 
+    //delete word from dictionary
     public void DeleteElement(string word)
     {
         MyDictionary.Remove(word);
     }
 
+    // update description from a given word
     public void UpdateElement(string word, string newDescription)
     {
         MyDictionary[word] = newDescription;
     }
 
-   
+    //convert the dictionary to a list of type "ElementsList"
     public ElementsList ToList()
     {
         var list = new List<DictionaryElement>();
@@ -56,6 +59,7 @@ public class Dictionar
         return elementsList;
     }
 
+    //Convert the list to a dictionary
     public void ToDictionary(ElementsList el)
     {
         foreach (var item in el.Words)
