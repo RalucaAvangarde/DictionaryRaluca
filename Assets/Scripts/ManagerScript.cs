@@ -36,15 +36,15 @@ public class ManagerScript : MonoBehaviour
         ShowWords();
 
     }
-    // try catch - don`t allow to user to add a word if that word exists already
+    // don`t allow to user to add a word if that word exists already
     // verify if inputs contains words and definition and after add the element in dictionary and save it, when Add button is pressed
     // after adding word, cleared input field
     public void AddWord()
     {
-        try
-        {
-            var space = "";
 
+        var space = "";
+        if (!myDictionary.MyDictionary.Keys.Contains(key.text))
+        {
             if ((!string.IsNullOrEmpty(key.text) || !key.text.Contains(space)) && (!string.IsNullOrEmpty(valueDef.text) || !valueDef.text.Contains(space)))
             {
                 myDictionary.AddElement(key.text, valueDef.text);
@@ -59,19 +59,27 @@ public class ManagerScript : MonoBehaviour
                 Debug.Log("Insert a word");
             }
         }
-        catch (Exception)
+        else
         {
-            Debug.LogError("Element is already in dictionary");
+            Debug.Log("Element exists already");
         }
+
 
     }
     //delete word from dictionary when press on Delete button
     public void DeleteWord()
     {
-        myDictionary.DeleteElement(key.text);
-        ShowWords();
-        myDictionary.Save();
-        ClearFields();
+        if (myDictionary.MyDictionary.Keys.Contains(key.text))
+        {
+            myDictionary.DeleteElement(key.text);
+            ShowWords();
+            myDictionary.Save();
+            ClearFields();
+        }
+        else
+        {
+            Debug.Log("The word doensn`t exists in dictionary");
+        }
 
     }
     // display words in specified order, A-Z, Z-A or unordered
@@ -97,6 +105,7 @@ public class ManagerScript : MonoBehaviour
         }
 
     }
+    
     private void DisplayWordsFromDictionary(Dictionary<string, string> dictionary)
     {
         foreach (var item in dictionary)
