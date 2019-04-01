@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
-public class Dictionar
+public class DictionaryManager
 {
     public Dictionary<string, string> MyDictionary { get; set; }
     private JsonUtils utils;
 
-    public Dictionar()
+    public DictionaryManager()
     {
         utils = new JsonUtils();
         MyDictionary = new Dictionary<string, string>();

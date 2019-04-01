@@ -60,11 +60,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Dictionar.cs" />
     <Compile Include="Assets\Scripts\DictionaryData.cs" />
+    <Compile Include="Assets\Scripts\DictionaryManager.cs" />
     <Compile Include="Assets\Scripts\JsonUtils.cs" />
     <Compile Include="Assets\Scripts\ManagerScript.cs" />
-    <Compile Include="Assets\Scripts\WordElement.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

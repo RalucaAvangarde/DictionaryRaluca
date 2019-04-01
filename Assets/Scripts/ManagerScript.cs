@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,12 +21,12 @@ public class ManagerScript : MonoBehaviour
     private InputField valueDef;
     [SerializeField]
     private InputField search;
-    private Dictionar myDictionary = new Dictionar();
+    private DictionaryManager myDictionary = new DictionaryManager();
 
     void Start()
     {
         key = key.GetComponent<InputField>();
-        myDictionary = new Dictionar();
+        myDictionary = new DictionaryManager();
         consoleText.text = "";
     }
     private void Awake()
@@ -97,19 +95,19 @@ public class ManagerScript : MonoBehaviour
         ClearList();
         if (sortDd.value == 1)
         {
-            ClearList();
+           
             DisplayWordsFromDictionary(myDictionary.MyDictionary.OrderBy(x => x.Key).ToDictionary(element => element.Key, element => element.Value));
             consoleText.text = "";
         }
         else if (sortDd.value == 2)
         {
-            ClearList();
+           
             DisplayWordsFromDictionary(myDictionary.MyDictionary.OrderByDescending(x => x.Key).ToDictionary(element => element.Key, element => element.Value));
             consoleText.text = "";
         }
         else
         {
-            ClearList();
+          
             DisplayWordsFromDictionary(myDictionary.MyDictionary);
             consoleText.text = "";
         }

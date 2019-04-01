@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 public class JsonUtils : MonoBehaviour
 {
     public ElementsList DefaultWords { get; set; }
-    private string fileName = "dictionary1.json"; // @"C:\Users\Intern 1\AppData\LocalLow\DefaultCompany\DictionaryProject\
+    private string fileName = "dictionary1.json"; 
     private string jsonFilePath;
 
     void Awake()
